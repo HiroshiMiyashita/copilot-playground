@@ -1,0 +1,45 @@
+{
+    "python.languageServer": "Pylance",
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.extraPaths": [
+        "/usr/local/lib/python3.11/site-packages"
+    ],
+    "pylint.args": [
+        "--rcfile=${workspaceFolder}/.pylintrc"
+    ],
+    "flake8.args": [
+        "--config=${workspaceFolder}/.flake8.ini"
+    ],
+    "mypy-type-checker.args": [
+        "--config-file",
+        "${workspaceFolder}/mypy.ini"
+    ],
+    "autopep8.args": [
+        "--global-config",
+        "${workspaceFolder}/.flake8.ini"
+    ],
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        ".",
+        "-p",
+        "*test*.py"
+    ],
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "[markdown]": {
+        "editor.unicodeHighlight.ambiguousCharacters": true,
+        "editor.unicodeHighlight.invisibleCharacters": true,
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": {
+            "comments": "on",
+            "strings": "on",
+            "other": "on"
+        },
+        "editor.formatOnSave": true
+        // "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+    }
+}

@@ -1,0 +1,105 @@
+// devcontainer.jsonの設定項目については以下を参照
+// https://code.visualstudio.com/docs/remote/devcontainerjson-reference
+{
+    // devcontainerの名前
+    "name": "Python 3.11",
+
+    // 使用するイメージ
+    //
+    // イメージについてはMicrosoft Artifact Registryの以下のURLを参照
+    // https://mcr.microsoft.com/en-us/catalog?search=Devcontainers
+    "image": "mcr.microsoft.com/devcontainers/python:3.11-buster",
+    
+    // imageに指定したコンテナイメージに追加する機能を指定する
+    //
+    // 🔗 [Custom Dev Container Features](https://code.visualstudio.com/blogs/2022/09/15/dev-container-features)
+    "features": {
+    },
+
+    // コンテナ内のカスタマイズ
+    "customizations": {
+        "vscode": {
+            // コンテナにインストールする拡張機能
+            "extensions": [
+                // Git関連の拡張機能
+                "eamodio.gitlens",
+                "mhutchie.git-graph",
+                "donjayamanne.githistory",
+
+                // copilot関連の拡張機能
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                // GitHub Copilot Voice.
+                // 2023/09/07現在、Technical Preview中、java 11以上が必要
+                "GitHub.heygithub",
+                "GitHub.copilot-labs",
+                
+                // PythonのLinter関連の拡張機能
+                "ms-python.pylint",
+                "ms-python.mypy-type-checker",
+                "ms-python.flake8",
+                
+                // Pythonの自動フォーマット関連の拡張機能
+                "ms-python.autopep8"
+            ],
+            // VSCodeの設定
+            "settings": {
+            }
+        }
+    },
+    
+    // コンテナの環境変数
+    // 影響範囲はコンテナ内のプロセス
+    //
+    // 📝 ホスト上の環境変数をコンテナ上の環境変数に引き継ぐには、
+    //    "MY_VARIABLE": ${localEnv:MY_HOST_VARIABLE}
+    //    のように記述する.
+    //    これにより、コンテナ上の環境変数MY_VARIABLEにホスト上の環境変数MY_HOST_VARIABLEの値が設定される.
+    "containerEnv": {
+    },
+
+    // VSCodeのサーバ（コンテナ内で動作する）に適用する環境変数
+    // コンテナの環境変数には影響しない
+    // 影響範囲はVSCodeのサーバプロセス及び、その子プロセスであるターミナルプロセス
+    // 
+    // 📝 環境変数や、[pre-defind variables](https://containers.dev/implementors/json_reference/#variables-in-devcontainerjson)が使用できる.
+    //
+    // 📝 ホスト上の環境変数をコンテナ上の環境変数に引き継ぐには、
+    //    "MY_VARIABLE": ${localEnv:MY_HOST_VARIABLE}
+    //    のように記述する.
+    //    これにより、コンテナ上の環境変数MY_VARIABLEにホスト上の環境変数MY_HOST_VARIABLEの値が設定される.
+    //
+    // 📝 コンテナ上の環境変数を引き継ぐには
+    //    "MY_VS_VARIABLE": ${containerEnv:MY_CONTAINER_VARIABLE}   
+    //    のように記述する.
+    //    これにより、VSCodeのサーバプロセス及び、その子プロセスであるターミナルプロセスに環境変数MY_VS_VARIABLEが設定される.
+    //
+    // ❗ もし、ターミナルで有効にならない場合は、Terminal > Integrated: Inherit Envを確認すること
+    "remoteEnv": {
+        "PYTHONPATH": "${containerWorkspaceFolder}/lib:${containerWorkspaceFolder}/tests"
+    },
+
+    // // VSCodeのクライアント上にポートフォワードするポート
+    // "forwardPorts": [],
+
+    // // コンテナが作成される前にホストマシンで実行されるコマンド
+    // "initializeCommand": "",
+
+    // コンテナがはじめて開始された直後にコンテナ内で実行されるコマンド
+    // devコンテナ作成時にコンテナをセットアップする3つのステップのうちの1番目
+    // "onCreateCommand": "",
+
+    // // コンテナ作成プロセス中に新しいコンテンツがソースツリーで利用可能になるたびに実行されるコマンド
+    // // devコンテナ作成時にコンテナをセットアップする3つのステップのうちの2番目
+    // "updateContentCommand": "",
+
+    // コンテナがはじめてユーザに割り当てられて時に実行されるコマンド
+    // devコンテナ作成時にコンテナをセットアップする3つのステップのうちの3番目
+    "postCreateCommand": "/bin/sh .devcontainer/post_create_command.sh",
+
+    // コンテナが開始された直後に実行されるコマンド
+    "postStartCommand": "/bin/sh .devcontainer/post_start_command.sh"
+
+    // // ツールがコンテナに正常にアタッチされるたびに直後に実行されるコマンド
+    // "postAttachCommand": ""
+}
